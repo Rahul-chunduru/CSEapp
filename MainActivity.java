@@ -1,11 +1,9 @@
-package com.example.saiganesh.sample;
+package com.example.mycseapp;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.annotation.StringDef;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.ButtonBarLayout;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -26,55 +24,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
-//public class MainActivity extends AppCompatActivity {
-//    private DatabaseReference mDatabase;
-//
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//
-//        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-//
-//        // [START declare_database_ref]
-//        // [END declare_database_ref]
-//
-//        // [START initialize_database_ref]
-//        mDatabase = FirebaseDatabase.getInstance().getReference();
-//        // [END initialize_database_ref]
-//
-//        mDatabase.child("Email").child("chundururahul").setValue("its me rahul");
-//
-//        String key = mDatabase.push().getKey();
-//        EditText r = (EditText) findViewById(R.id.x) ;
-//
-//        final TextView t = (TextView)findViewById(R.id.textView) ;
-//        mDatabase.child("Email").child("venkatasaiganesh3").setValue("saiganesh");
-//        final String b = "chundururahul" ;
-//        DatabaseReference R = mDatabase.child("Email").child(b) ;
-//
-//        R.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                String s = dataSnapshot.getValue().toString() ;
-//                t.setText(s);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//            t.setText("unable");
-//            }
-//        }) ;
-//
-//
-//
-//
-//    }
-//}
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
-
+    private DatabaseReference mData ;
+    private String Username  ;
     private static final String TAG = "EmailPassword";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,12 +36,14 @@ public class MainActivity extends AppCompatActivity {
         Button r = (Button) findViewById(R.id.authentify);
         mAuth = FirebaseAuth.getInstance() ;
 
+
+
         r.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 final EditText e = (EditText) findViewById(R.id.E);
                 final EditText p = (EditText) findViewById(R.id.P);
 
-                signIn(e.getText().toString() , p.getText().toString());
+                    signIn(e.getText().toString() , p.getText().toString());
 
             }
         });
@@ -114,9 +69,9 @@ public class MainActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-
+                            getUsername() ;
                             Intent intent = new Intent(getApplicationContext(), Main2Activity.class) ;
-                            intent.putExtra(EXTRA_MESSAGE, e.getText().toString()) ;
+                            intent.putExtra(EXTRA_MESSAGE, Username)  ;
                             startActivity(intent);
 
                         } else {
@@ -131,6 +86,22 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
+    }
+    public void getUsername()
+    {
+        String U = FirebaseAuth.getInstance().getCurrentUser().getUid() ;
+        mData = FirebaseDatabase.getInstance().getReference().child("Email").child(U) ;
+        mData.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Username = dataSnapshot.getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        }) ;
     }
     private boolean validateForm() {
         boolean valid = true;

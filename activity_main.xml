@@ -4,56 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.saiganesh.sample.MainActivity">
-
-    <!--<TextView-->
-        <!--android:layout_width="143dp"-->
-        <!--android:layout_height="77dp"-->
-        <!--android:text="Hii"-->
-        <!--tools:layout_editor_absoluteY="46dp"-->
-        <!--tools:layout_editor_absoluteX="38dp" />-->
-
-    <!--<Button-->
-        <!--android:id="@+id/button"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="password"-->
-        <!--tools:layout_editor_absoluteX="148dp"-->
-        <!--tools:layout_editor_absoluteY="171dp" />-->
-    <!--<Button-->
-        <!--android:id="@+id/button"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="User name"-->
-        <!--tools:layout_editor_absoluteX="148dp"-->
-        <!--tools:layout_editor_absoluteY="109dp" />-->
+    tools:context="com.example.mycseapp.MainActivity"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
     <EditText
         android:id="@+id/P"
-        android:layout_height="wrap_content"
-        android:layout_width="368dp"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/authentify"
-        app:layout_constraintTop_toBottomOf="@+id/notify"
+        android:layout_height="46dp"
+        android:hint="Password"
+        android:layout_width="300dp"
+        android:inputType="textPassword"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.23"
+        tools:layout_editor_absoluteY="105dp" />
     <EditText
         android:id="@+id/E"
-        android:layout_height="51dp"
-        android:layout_width="368dp"
+        android:hint="Registered Mail"
+        android:layout_height="58dp"
+        android:layout_width="296dp"
         android:inputType="text"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/notify"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.086"
+        tools:layout_editor_absoluteY="33dp" />
     <Button
         android:id="@+id/authentify"
         android:layout_width="108dp"
         android:layout_height="52dp"
-        android:text="Button"
+        android:text="Log In"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/P" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.532"
+        app:layout_constraintVertical_bias="0.649" />
 
     <TextView
         android:id="@+id/notify"
@@ -62,8 +50,9 @@
         android:text=""
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/P"
-        app:layout_constraintTop_toBottomOf="@+id/E" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.41" />
 
 
 </android.support.constraint.ConstraintLayout>
